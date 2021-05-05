@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   include ActiveModel::SecurePassword
+  include LikeSearchable
+  include Paginatable
 
   before_save { self.email = email.downcase }
 
