@@ -14,10 +14,9 @@ class ApplicationController < ActionController::API
   EXPIRATION_TIME = 7.days
 
   before_action :authorized
-  API_SECRET = Rails.application.secrets.secret_key_base
 
   def encode_token(payload)
-    JWT.encode(token_payload(payload), API_SECRET)
+    JWT.encode(token_payload(payload), ENV['SECRET_KEY_BASE'])
   end
 
   def auth_header
@@ -36,7 +35,7 @@ class ApplicationController < ActionController::API
                     iss: ENV['JWT_ISS'],
                     verify_iss: true,
                     algorithm: 'HS256' }
-        JWT.decode token, API_SECRET, true, options
+        JWT.decode token, ENV['SECRET_KEY_BASE'], true, options
       rescue JWT::DecodeError
         nil
       rescue JWT::InvalidIssuerError
