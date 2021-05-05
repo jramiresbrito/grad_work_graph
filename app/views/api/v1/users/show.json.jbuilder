@@ -1,3 +1,3 @@
 json.user do
-  json.call(@user, :id, :name, :email, :profile)
+  json.call(@user, :id, :name, :email)
 end

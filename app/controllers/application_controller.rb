@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::API
   include ActionController::MimeResponds
   include Pundit
+  include SimpleErrorRenderable
+  self.simple_error_partial = "shared/simple_error"
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
@@ -48,7 +50,7 @@ class ApplicationController < ActionController::API
   def logged_in_user
     if decoded_token
       user_id = decoded_token.first['user_id']
-      @user = User.find(user_id)
+      @current_user = User.find(user_id)
     end
   end
 
@@ -76,7 +78,7 @@ class ApplicationController < ActionController::API
     iss = ENV['JWT_ISS']
     exp = (Time.now + EXPIRATION_TIME).to_i
     iat = Time.now.to_i
-    { user_id: user.id.to_str, exp: exp, iat: iat, iss: iss }
+    { user_id: user.id.to_s, exp: exp, iat: iat, iss: iss }
   end
 
   def user_not_found

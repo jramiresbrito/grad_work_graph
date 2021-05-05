@@ -10,9 +10,14 @@ module Api::V1
     end
 
     def create
-      @user = User.new
-      @user.attributes = user_params
-      save_user!
+      user = User.create(user_params)
+
+      if user.valid?
+        token = encode_token(user)
+        render json: { token: token }, status: :created
+      else
+        render_error(fields: user.errors.messages)
+      end
     end
 
     def update
@@ -37,7 +42,7 @@ module Api::V1
     def user_params
       return {} unless params.key?(:user)
 
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.permit(:name, :email, :password, :password_confirmation)
     end
 
     def save_user!
