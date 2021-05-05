@@ -15,6 +15,9 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.6'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 
+# Authorization
+gem 'pundit'
+
 # CORS
 gem 'rack-cors', '~> 1.1.1'
 
