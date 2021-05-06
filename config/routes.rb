@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :users
       resources :sign_in, only: :create
       resources :categories
+      resources :system_requirements
     end
   end
 end
