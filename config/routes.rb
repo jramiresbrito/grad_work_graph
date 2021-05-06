@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       resources :sign_in, only: :create
       resources :categories
       resources :system_requirements
+      resources :products
+      resources :games, only: [], shallow: true do
+        resources :licenses
+      end
     end
   end
 end
