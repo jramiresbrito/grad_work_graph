@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.10.1'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'colorize'
   gem 'dotenv-rails'
   gem 'faker', '~> 2.14.0'
   gem 'rspec-rails', '~> 4.0.1'

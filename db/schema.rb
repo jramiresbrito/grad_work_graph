@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_05_06_012659) do
     t.bigint "productable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status"
+    t.integer "status", default: 1
     t.boolean "featured", default: false
     t.index ["productable_type", "productable_id"], name: "index_products_on_productable_type_and_productable_id"
   end
