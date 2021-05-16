@@ -1,6 +1,7 @@
 module Api::V1
   class LicensesController < ApiController
     before_action :set_license, only: %i[show update destroy]
+    skip_before_action :authorized
 
     def index
       game_licenses = License.where(game_id: params[:game_id])

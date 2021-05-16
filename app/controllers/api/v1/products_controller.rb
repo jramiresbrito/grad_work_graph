@@ -1,6 +1,7 @@
 module Api::V1
   class ProductsController < ApiController
     before_action :set_product, only: %i[show update destroy]
+    skip_before_action :authorized
 
     def index
       @loading_service = ModelLoadingService.new(Product.all, searchable_params)

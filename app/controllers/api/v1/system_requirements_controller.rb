@@ -1,6 +1,7 @@
 module Api::V1
   class SystemRequirementsController < ApiController
     before_action :set_system_requirement, only: %i[show update destroy]
+    skip_before_action :authorized
 
     def index
       @loading_service = ModelLoadingService.new(SystemRequirement.all, searchable_params)

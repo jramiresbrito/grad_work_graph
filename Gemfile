@@ -11,6 +11,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.6'
 gem 'faker', '~> 2.14.0'
+gem 'colorize'
 
 # Authentication
 gem 'bcrypt', '~> 3.1.7'
@@ -27,7 +28,6 @@ gem 'jbuilder', '~> 2.10.1'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'colorize'
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 4.0.1'
   gem 'factory_bot_rails'

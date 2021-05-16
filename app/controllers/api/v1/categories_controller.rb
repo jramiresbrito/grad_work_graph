@@ -1,6 +1,7 @@
 module Api::V1
   class CategoriesController < ApiController
     before_action :set_category, only: %i[show update destroy]
+    skip_before_action :authorized
 
     def index
       @loading_service = ModelLoadingService.new(Category.all, searchable_params)
