@@ -51,7 +51,7 @@ module Api::V1
 
       permitted_params = params.require(:product).permit(:id, :name, :description,
                                                          :image, :price, :productable,
-                                                         :status, :featured,
+                                                         :status, :featured, :image_url,
                                                          category_ids: [])
       permitted_params.merge(productable_params)
     end
