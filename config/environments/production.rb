@@ -58,9 +58,9 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: ENV['PRODUCTION_APP_URL'] }
   config.action_mailer.smtp_settings = {
-    user_name: ENV['SENDGRID_PASSWORD'],
+    user_name: ENV['SENDGRID_USERNAME'],
     password: ENV['SENDGRID_PASSWORD'],
-    domain: ENV['PRODUCTION_APP_URL'],
+    domain: 'heroku.com',
     address: ENV['EMAIL_URL'],
     port: ENV['EMAIL_PORT'],
     authentication: :plain,
