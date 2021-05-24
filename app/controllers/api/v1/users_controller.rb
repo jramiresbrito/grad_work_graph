@@ -14,6 +14,7 @@ module Api::V1
 
       if user.valid?
         token = encode_token(user)
+        UserMailer.welcome(user).deliver_now
         render json: { token: token }, status: :created
       else
         render_error(fields: user.errors.messages)
