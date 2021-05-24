@@ -53,17 +53,16 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "grad_work_graph_production"
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: ENV['PRODUCTION_APP_URL'] }
-  config.action_mailer.smtp_settings = {
+  ActionMailer::Base.smtp_settings = {
+    address: 'smtp.sendgrid.net',
+    port: '587',
+    authentication: :plain,
     user_name: ENV['SENDGRID_USERNAME'],
     password: ENV['SENDGRID_PASSWORD'],
     domain: 'heroku.com',
-    address: ENV['EMAIL_URL'],
-    port: ENV['EMAIL_PORT'],
-    authentication: :plain,
     enable_starttls_auto: true
   }
 
