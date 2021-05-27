@@ -74,7 +74,7 @@ print 'Creating Games...'
     featured: featured,
     category_ids: game_categories_ids,
     productable: game,
-    image_url: "https://drive.google.com/file/d/1WW_CLK3LBT0Sqhz7iRo7w1qEHyTZuCIn/view"
+    image_url: "https://imgur.com/rENbpgq"
   )
 end
 puts 'Ok'.green
