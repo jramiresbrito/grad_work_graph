@@ -1,0 +1,1 @@
+class InvalidUse < StandardError; end
