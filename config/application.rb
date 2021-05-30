@@ -31,5 +31,7 @@ module GradWorkGraph
 
     # Custom validations load paths
     config.autoload_paths += %W["#{config.root}/app/validators/"]
+
+    config.autoloader = :classic
   end
 end
