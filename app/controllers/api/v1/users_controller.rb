@@ -4,8 +4,8 @@ module Api::V1
     before_action :set_user, only: %i[show update destroy]
 
     def index
-      # scope_without_current_user = User.where.not(id: @current_user.id)
-      @loading_service = ModelLoadingService.new(User.all, searchable_params)
+      scope_without_current_user = User.where.not(id: @current_user.id)
+      @loading_service = ModelLoadingService.new(scope_without_current_user, searchable_params)
       @loading_service.call
     end
 
@@ -32,6 +32,14 @@ module Api::V1
       @user.destroy!
     rescue StandardError
       render_error(fields: @user.errors.messages)
+    end
+
+    def me
+      render json: { user: {
+        id: @current_user.id,
+        name: @current_user.name,
+        email: @current_user.email
+      } }, status: :ok
     end
 
     private
