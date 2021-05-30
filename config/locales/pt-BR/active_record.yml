@@ -3,10 +3,47 @@ pt-BR:
   activerecord:
     errors:
       messages:
+        status_change: "não pode mudar de %{status_was} para %{new_status}"
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+  order:
+    status:
+      name:
+        processing_order: "Processando pedido"
+        processing_error: "Erro no processamento do pedido"
+        payment_accepted: "Pagamento aceito"
+        payment_denied: "Pagamento recusado"
+        finished: "Pedido finalizado"
+      message:
+        processing_order: "Processando pedido"
+        processing_error: "Erro no processamento do pedido"
+        payment_accepted: "Pagamento aceito"
+        payment_denied: "Pagamento recusado"
+        finished: "Pedido finalizado"
+  order_item:
+    status:
+      name:
+        waiting_order: "Aguardando pedido"
+        preparing: "Preparando"
+        en_route: "Em rota"
+        delivered: "Entregue"
+      message:
+        waiting_order: "Aguardando pedido"
+        preparing: "Preparando"
+        en_route: "Em rota"
+        delivered: "Entregue"
+  license:
+    status:
+      name:
+        available: "Disponível"
+        in_use: "Em uso"
+        inactive: "Inativo"
+      message:
+        available: "Disponível"
+        in_use: "Em uso"
+        inactive: "Inativo"
   date:
     abbr_day_names:
     - dom

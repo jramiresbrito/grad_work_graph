@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_004828) do
+ActiveRecord::Schema.define(version: 2021_05_30_083844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 2021_05_27_004828) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "coupons", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.integer "status"
+    t.decimal "discount_value", precision: 5, scale: 2
+    t.integer "max_use", default: 50
+    t.datetime "due_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "games", force: :cascade do |t|
     t.integer "mode"
     t.datetime "release_date"
@@ -59,7 +70,33 @@ ActiveRecord::Schema.define(version: 2021_05_27_004828) do
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_item_id"
     t.index ["game_id"], name: "index_licenses_on_game_id"
+    t.index ["order_item_id"], name: "index_licenses_on_order_item_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.decimal "payed_price", precision: 10, scale: 2
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "status"
+    t.decimal "subtotal", precision: 10, scale: 2
+    t.integer "payment_type"
+    t.integer "installments"
+    t.bigint "user_id", null: false
+    t.bigint "coupon_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coupon_id"], name: "index_orders_on_coupon_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -110,6 +147,11 @@ ActiveRecord::Schema.define(version: 2021_05_27_004828) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "games", "system_requirements"
   add_foreign_key "licenses", "games"
+  add_foreign_key "licenses", "order_items"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "coupons"
+  add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
 end

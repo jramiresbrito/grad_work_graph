@@ -82,11 +82,10 @@ puts 'Ok'.green
 print 'Creating Licenses...'
 Game.all.each do |game|
   50.times do |i|
-    status = %i[available in_use inactive].sample
     platform = %i[steam epic].sample
     License.create!(
       key: Digest::MD5.hexdigest("#{game.product.name} #{i}"),
-      status: status,
+      status: License::Status::AVAILABLE,
       platform: platform,
       game: game
     )
