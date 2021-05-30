@@ -4,8 +4,8 @@ module Api::V1
     before_action :set_user, only: %i[show update destroy]
 
     def index
-      scope_without_current_user = User.where.not(id: @current_user.id)
-      @loading_service = ModelLoadingService.new(scope_without_current_user, searchable_params)
+      # scope_without_current_user = User.where.not(id: @current_user.id)
+      @loading_service = ModelLoadingService.new(User.all, searchable_params)
       @loading_service.call
     end
 
