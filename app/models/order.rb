@@ -49,24 +49,23 @@ class Order < ApplicationRecord
   end
 
   validates :status, presence: true, inclusion: { in: Order::Status::AVAILABLE_STATUS }
-  validates :subtotal, presence: true, numericality: { greater_than: 0 }
+  validates :subtotal, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :payment_type, presence: true
-  validates :installments, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   with_options if: -> { credit_card? }, on: :create do
     validates :credit_card_number, presence: true
+    validates :installments, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   end
 
   enum payment_type: { credit_card: 1, billet: 2 }
 
   validate :status_transitions
 
-  # before_validation :set_initial_status, on: :create
-  # before_validation :set_previous_status, if: -> { status_changed? }
-  # before_validation :set_initial_subtotal, on: :create
-  # before_save :update_subtotal, on: :update
-  # after_create :check_payment_failed, if: -> { credit_card? }
+  before_validation :set_initial_status, on: :create
+  before_validation :set_initial_subtotal, on: :create
+  after_create :send_order_received_email
   around_update :ship_order, if: -> { status_changed?(to: Order::Status::PAYMENT_ACCEPTED) }
+  around_update :send_failure_email, if: -> { status_changed?(to: Order::Status::PROCESSING_ERROR) }
 
   # Human-readable I18n message for the current status of the batch
   def status_message
@@ -89,11 +88,6 @@ class Order < ApplicationRecord
     self.previous_status = status_was
   end
 
-  def ship_order
-    yield
-    order_items.each { |order_item| order_item.ship! }
-  end
-
   def update_subtotal!
     subtotal = 0
 
@@ -106,6 +100,16 @@ class Order < ApplicationRecord
 
   private
 
+  def ship_order
+    OrderMailer.payment_received(self).deliver_now
+    yield
+    order_items.each { |order_item| order_item.ship! }
+  end
+
+  def send_order_received_email
+    OrderMailer.created(self).deliver_now
+  end
+
   # Sets the initial state for Orders
   def set_initial_status
     self.status = Order::Status::PROCESSING_ORDER
@@ -113,5 +117,9 @@ class Order < ApplicationRecord
 
   def set_initial_subtotal
     self.subtotal = 0
+  end
+
+  def send_failure_email
+    OrderMailer.payment_failed(self).deliver_now
   end
 end
