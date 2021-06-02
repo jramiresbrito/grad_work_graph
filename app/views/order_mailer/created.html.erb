@@ -1,17 +1,675 @@
-<h1>
-  <%= @user.name %>, recebemos seu pedido!
-</h1>
-
-<p>
-  Aqui estão os detalhes: <br>
-  <strong>Pedido: </strong> <%= @order.id %> <br>
-</p>
-
-<p>
-  Caso seu pagamento seja aprovado pela operadora, você receberá um email com seus códigos de resgaste.
-</p>
-
-<p>
-  Atenciosamente, <br>
-  Equipe Store Games.
-</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>Pedido Recebido</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i"
+      rel="stylesheet"
+    />
+    <style>
+      .progressbar li:before {
+        content: counter(step);
+        counter-increment: step;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #ddd;
+        border-radius: 100%;
+        display: block;
+        text-align: center;
+        margin: 0 auto 10px auto;
+        background-color: #fff;
+      }
+      .progressbar li:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: #ddd;
+        top: 15px;
+        left: -50%;
+        z-index: -1;
+      }
+      .progressbar li:first-child:after {
+        content: none;
+      }
+      .progressbar li.active {
+        color: #f231a5;
+      }
+      .progressbar li.active:before {
+        border-color: #f231a5;
+      }
+      .progressbar li.active + li:after {
+        background-color: #f231a5;
+      }
+      .es-header-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="es-wrapper-color">
+      <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <td class="esd-email-paddings" valign="top">
+              <table
+                class="es-content esd-header-popover"
+                cellspacing="0"
+                cellpadding="0"
+                align="center"
+                style="display: flex; justify-content: center"
+              >
+                <tbody>
+                  <tr>
+                    <td
+                      class="esd-stripe"
+                      align="center"
+                      style="
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <table
+                        class="es-header-body"
+                        style="background-color: #06092b"
+                        width="600"
+                        height="110"
+                        cellspacing="0"
+                        cellpadding="0"
+                        bgcolor="#06092B"
+                        align="center"
+                      >
+                        <tbody>
+                          <tr>
+                            <td
+                              class="
+                                esd-structure
+                                es-p35t es-p35b es-p35r es-p35l
+                              "
+                              align="left"
+                              bgcolor="#06092B"
+                              style="
+                                background-color: #06092b;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                              "
+                            >
+                              <table
+                                class="es-left"
+                                cellspacing="0"
+                                cellpadding="0"
+                                align="left"
+                              >
+                                <tbody>
+                                  <tr>
+                                    <td
+                                      class="
+                                        es-m-p0r es-m-p20b
+                                        esd-container-frame
+                                      "
+                                      width="363"
+                                      valign="top"
+                                      align="center"
+                                    >
+                                      <table
+                                        width="100%"
+                                        cellspacing="0"
+                                        cellpadding="0"
+                                      >
+                                        <tbody>
+                                          <tr>
+                                            <td
+                                              align="left"
+                                              class="esd-block-image"
+                                              style="font-size: 0px"
+                                            >
+                                              <a
+                                                style="display: flex"
+                                                target="_blank"
+                                                ><img
+                                                  class="adapt-img"
+                                                  src="https://roxhxq.stripocdn.email/content/guids/CABINET_c0eb93ade472f7601417e5793a19f1fc/images/64881622061073222.png"
+                                                  width="40"
+                                                />
+                                                <h1
+                                                  style="
+                                                    color: #ffffff;
+                                                    line-height: 100%;
+                                                    font-size: 16px;
+                                                  "
+                                                >
+                                                  Store Games
+                                                </h1>
+                                              </a>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <table
+                                cellspacing="0"
+                                cellpadding="0"
+                                align="right"
+                                class="es-right"
+                              >
+                                <tbody>
+                                  <tr class="es-hidden">
+                                    <td
+                                      class="esd-container-frame"
+                                      width="100"
+                                      align="left"
+                                    >
+                                      <table
+                                        width="100%"
+                                        cellspacing="0"
+                                        cellpadding="0"
+                                        bgcolor="#06092B"
+                                        style="background-color: #06092b"
+                                      >
+                                        <tbody>
+                                          <tr>
+                                            <td>
+                                              <table
+                                                cellspacing="0"
+                                                cellpadding="0"
+                                                align="right"
+                                              >
+                                                <tbody>
+                                                  <tr>
+                                                    <td
+                                                      class="
+                                                        esd-block-image
+                                                        es-p10l
+                                                      "
+                                                      valign="top"
+                                                      align="center"
+                                                      style="font-size: 0px"
+                                                    >
+                                                      <a
+                                                        href="https://viewstripo.email"
+                                                        target="_blank"
+                                                        ><img
+                                                          src="https://roxhxq.stripocdn.email/content/guids/CABINET_c0eb93ade472f7601417e5793a19f1fc/images/21861622065820534.png"
+                                                          alt
+                                                          style="display: block"
+                                                          width="24"
+                                                      /></a>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table
+                class="es-content"
+                cellspacing="0"
+                cellpadding="0"
+                align="center"
+              >
+                <tbody>
+                  <tr>
+                    <td class="esd-stripe" align="center">
+                      <table
+                        class="es-content-body"
+                        width="600"
+                        cellspacing="0"
+                        cellpadding="0"
+                        bgcolor="#ffffff"
+                        align="center"
+                      >
+                        <tbody>
+                          <tr>
+                            <td
+                              class="esd-structure es-p40t es-p35r es-p35l"
+                              align="left"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                              >
+                                <tbody>
+                                  <tr>
+                                    <td
+                                      class="esd-container-frame"
+                                      width="530"
+                                      valign="top"
+                                      align="center"
+                                    >
+                                      <table
+                                        width="100%"
+                                        cellspacing="0"
+                                        cellpadding="0"
+                                      >
+                                        <tbody>
+                                          <tr>
+                                            <td class="esd-block-html">
+                                              <div
+                                                class="container"
+                                                style="width: 100%"
+                                              >
+                                                <ul
+                                                  class="progressbar"
+                                                  style="
+                                                    counter-reset: step;
+                                                    z-index: 0;
+                                                  "
+                                                >
+                                                  <li
+                                                    id="progress-item"
+                                                    class="active"
+                                                    style="
+                                                      list-style: none;
+                                                      display: inline-block;
+                                                      width: 30.33%;
+                                                      position: relative;
+                                                      text-align: center;
+                                                      cursor: pointer;
+                                                      z-index: 6;
+                                                    "
+                                                  >
+                                                    Pedido Recebido
+                                                  </li>
+                                                  <li
+                                                    id="progress-item"
+                                                    style="
+                                                      list-style: none;
+                                                      display: inline-block;
+                                                      width: 30.33%;
+                                                      position: relative;
+                                                      text-align: center;
+                                                      cursor: pointer;
+                                                      z-index: 5;
+                                                    "
+                                                  >
+                                                    Pagamento
+                                                  </li>
+                                                  <li
+                                                    id="progress-item"
+                                                    style="
+                                                      list-style: none;
+                                                      display: inline-block;
+                                                      width: 30.33%;
+                                                      position: relative;
+                                                      text-align: center;
+                                                      cursor: pointer;
+                                                      z-index: 4;
+                                                    "
+                                                  >
+                                                    Produto Enviado
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td
+                                              class="esd-block-text es-p10b"
+                                              align="center"
+                                            >
+                                              <h2><%= @user.name %>, obrigado pelo seu pedido!</h2>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table
+                class="es-content"
+                cellspacing="0"
+                cellpadding="0"
+                align="center"
+              >
+                <tbody>
+                  <tr>
+                    <td class="esd-stripe" align="center">
+                      <table
+                        class="es-content-body"
+                        width="600"
+                        cellspacing="0"
+                        cellpadding="0"
+                        bgcolor="#ffffff"
+                        align="center"
+                      >
+                        <tbody>
+                          <tr>
+                            <td
+                              class="esd-structure es-p20t es-p35r es-p35l"
+                              align="left"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                              >
+                                <tbody>
+                                  <tr>
+                                    <td
+                                      class="esd-container-frame"
+                                      width="530"
+                                      valign="top"
+                                      align="center"
+                                    >
+                                      <table
+                                        width="100%"
+                                        cellspacing="0"
+                                        cellpadding="0"
+                                      >
+                                        <tbody>
+                                          <tr>
+                                            <td
+                                              class="
+                                                esd-block-text
+                                                es-p10t es-p10b es-p10r es-p10l
+                                              "
+                                              bgcolor="#eeeeee"
+                                              align="left"
+                                            >
+                                              <table
+                                                style="width: 100%"
+                                                class="cke_show_border"
+                                                cellspacing="1"
+                                                cellpadding="1"
+                                                border="0"
+                                                align="left"
+                                              >
+                                                <tbody>
+                                                  <tr>
+                                                    <td width="80%">
+                                                      <h4>
+                                                        Confirmação do pedido
+                                                      </h4>
+                                                    </td>
+                                                    <td width="20%">
+                                                      <h4><%= @order.id %></h4>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              class="esd-structure es-p35r es-p35l"
+                              align="left"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                              >
+                                <tbody>
+                                  <tr>
+                                    <td
+                                      class="esd-container-frame"
+                                      width="530"
+                                      valign="top"
+                                      align="center"
+                                    >
+                                      <table
+                                        width="100%"
+                                        cellspacing="0"
+                                        cellpadding="0"
+                                      >
+                                        <tbody>
+                                          <tr>
+                                            <td
+                                              class="
+                                                esd-block-text
+                                                es-p10t es-p10b es-p10r es-p10l
+                                              "
+                                              align="left"
+                                            >
+                                              <table
+                                                style="width: 100%"
+                                                class="cke_show_border"
+                                                cellspacing="1"
+                                                cellpadding="1"
+                                                border="0"
+                                                align="left"
+                                              >
+                                                <tbody>
+                                                  <tr>
+                                                    <td
+                                                      style="
+                                                        padding: 5px 10px 5px 0;
+                                                      "
+                                                      width="80%"
+                                                      align="left"
+                                                    >
+                                                      <p>The Witcher 3</p>
+                                                    </td>
+                                                    <td
+                                                      style="padding: 5px 0"
+                                                      width="20%"
+                                                      align="left"
+                                                    >
+                                                      <p>R$ 210.00</p>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              class="esd-structure es-p10t es-p35r es-p35l"
+                              align="left"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                              >
+                                <tbody>
+                                  <tr>
+                                    <td
+                                      class="esd-container-frame"
+                                      width="530"
+                                      valign="top"
+                                      align="center"
+                                    >
+                                      <table
+                                        style="
+                                          border-top: 3px solid #eeeeee;
+                                          border-bottom: 3px solid #eeeeee;
+                                        "
+                                        width="100%"
+                                        cellspacing="0"
+                                        cellpadding="0"
+                                      >
+                                        <tbody>
+                                          <tr>
+                                            <td
+                                              class="
+                                                esd-block-text
+                                                es-p15t es-p15b es-p10r es-p10l
+                                              "
+                                              align="left"
+                                            >
+                                              <table
+                                                style="width: 100%"
+                                                class="cke_show_border"
+                                                cellspacing="1"
+                                                cellpadding="1"
+                                                border="0"
+                                                align="left"
+                                              >
+                                                <tbody>
+                                                  <tr>
+                                                    <td width="80%">
+                                                      <h4>TOTAL</h4>
+                                                    </td>
+                                                    <td width="20%">
+                                                      <h4>R$210.00</h4>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table
+                cellpadding="0"
+                cellspacing="0"
+                class="es-footer esd-footer-popover"
+                align="center"
+                style="margin-top: 30px"
+              >
+                <tbody>
+                  <tr>
+                    <td class="esd-stripe" align="center">
+                      <table
+                        class="es-footer-body"
+                        width="600"
+                        cellspacing="0"
+                        cellpadding="0"
+                        align="center"
+                      >
+                        <tbody>
+                          <tr>
+                            <td
+                              class="
+                                esd-structure
+                                es-p35t es-p40b es-p35r es-p35l
+                              "
+                              align="left"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                              >
+                                <tbody>
+                                  <tr>
+                                    <td
+                                      class="esd-container-frame"
+                                      width="530"
+                                      valign="top"
+                                      align="center"
+                                    >
+                                      <table
+                                        width="100%"
+                                        cellspacing="0"
+                                        cellpadding="0"
+                                      >
+                                        <tbody>
+                                          <tr>
+                                            <td
+                                              class="esd-block-image es-p15b"
+                                              align="center"
+                                              style="font-size: 0px"
+                                            >
+                                              <a target="_blank"
+                                                ><img
+                                                  src="https://roxhxq.stripocdn.email/content/guids/CABINET_c0eb93ade472f7601417e5793a19f1fc/images/64881622061073222.png"
+                                                  alt="logo"
+                                                  style="display: block"
+                                                  title="logo"
+                                                  width="40"
+                                              /></a>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td
+                                              class="esd-block-text es-p35b"
+                                              align="center"
+                                            >
+                                              <p>
+                                                <strong>
+                                                  Store Games 
+                                                </strong>
+                                                com 💙 de Belo Horizonte, Brasil.
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
